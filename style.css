@@ -7,28 +7,29 @@ header {
     text-align: center;
     padding: 1em 0;
 }
+
 h1 {
     font-size: 24px;
     color: #333;
-  }
-  
-  form.search {
+}
+
+form.search {
     margin: 20px 0;
-  }
-  
-  label.search {
+}
+
+label.search {
     font-size: 16px;
     color: #333;
-  }
-  
-  input#search-input {
+}
+
+input#search-input {
     padding: 9px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  button#search-btn {
+}
+
+button#search-btn {
     padding: 8px 13px;
     font-size: 16px;
     background-color: #636363;
@@ -36,29 +37,30 @@ h1 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  #cardList {
+}
+
+#cardList {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-  }
-  
-  .movieCard {
+    text-align: center;
+}
+
+.movieCard {
     border: 1px solid #ccc;
     border-radius: 4px;
     margin: 10px;
     padding: 10px;
     width: 300px;
 }
-  
-  .movieCard img {
+
+.movieCard img {
     width: 100%;
     height: auto;
-  }
-  
-  
-  .movieCard p {
+}
+
+
+.movieCard p {
     font-size: 14px;
     color: #555;
-  }
-  
+}

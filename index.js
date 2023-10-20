@@ -27,19 +27,30 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(data => {
         console.log(data);
         data.results.forEach((a) => {
-          const $moviecard = document.createElement('div');
-          $moviecard.className = "movieCard";
-          $moviecard.innerHTML = `
-            <img src="https://image.tmdb.org/t/p/w500${a.poster_path}" alt="${a.title}"
-            <h3>${a.title}</h3>
-            <p>${a.overview}</p>
-            <p>rating : ${a.vote_average}</p>`;
+          const $moviecard = createMovieCard(a);
           $movieList.appendChild($moviecard);
         });
       })
       .catch(error => {
         console.error('API 요청 중 오류 발생:', error);
       });
+  }
+
+  function createMovieCard(movieData) {
+    const $moviecard = document.createElement('div');
+    $moviecard.className = "movieCard";
+    $moviecard.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w500${movieData.poster_path}" alt="${movieData.title}">
+      <h3>${movieData.title}</h3>
+      <p>${movieData.overview}</p>
+      <p>rating: ${movieData.vote_average}</p>`;
+
+    $moviecard.querySelector('img').addEventListener('click', function () {
+      const movieId = movieData.id;
+      alert(`영화 ID: ${movieId}`);
+    });
+
+    return $moviecard;
   }
 
   function handleSearch(event) {
@@ -49,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (searchTerm.trim() !== "") {
       const $movieList = document.querySelector('#cardList');
-      $movieList.innerHTML = ""; 
+      $movieList.innerHTML = "";
 
       const apiUrl = `${apiEndpoint}?language=ko-KO&api_key=${apiKey}&query=${searchTerm}`;
       console.log(searchTerm);
@@ -59,13 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
           console.log(data);
           data.results.forEach((a) => {
-            const $moviecard = document.createElement('div');
-            $moviecard.className = "movieCard";
-            $moviecard.innerHTML = `
-              <img src="https://image.tmdb.org/t/p/w500${a.poster_path}" alt="${a.title}"
-              <h3>${a.title}</h3>
-              <p>${a.overview}</p>
-              <p>rating : ${a.vote_average}</p>`;
+            const $moviecard = createMovieCard(a);
             $movieList.appendChild($moviecard);
           });
         })
