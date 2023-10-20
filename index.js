@@ -4,8 +4,9 @@ const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZmMyZjNlYjc6Nzk0YmM3Yzc5Y2I4NzdhN2U0ZTc5ZjEiLCJzdWIiOiI2NTJmOTBkZWE4MDIzNjAxMzc6Nzk0YmM3Yzc5Y2I4NzdhN2U0ZTc5ZjEiLCJzY29wZSI6WyJhcGlfdHJhbnFzY3JyYXJlbm8iXSwidmVyc2lvbiI6MX0.dDGo7-1RtO-vBd97qa-2rhOt4dkmtfgifT9OZY8CEco'
-}};
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZmMyZjNlYjc2OTRiYzdjNzljYjg3N2E3ZTRlNzlmMSIsInN1YiI6IjY1MmY5MGRlYTgwMjM2MDEzNzY4ZDM1YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dDGo7-1RtO-vBd97qa-2rhOt4dkmtfgifT9OZY8CEco'
+  }
+};
 
 document.addEventListener('DOMContentLoaded', function () {
   loadInitialData();
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function loadInitialData() {
     const $movieList = document.querySelector('#cardList');
-    fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
+    fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko-KO&page=1', options)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -50,9 +51,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const $movieList = document.querySelector('#cardList');
       $movieList.innerHTML = ""; 
 
-      const apiUrl = `${apiEndpoint}?api_key=${apiKey}&query=${searchTerm}`;
+      const apiUrl = `${apiEndpoint}?language=ko-KO&api_key=${apiKey}&query=${searchTerm}`;
       console.log(searchTerm);
-
+      console.log(apiUrl);
       fetch(apiUrl, options)
         .then(response => response.json())
         .then(data => {
