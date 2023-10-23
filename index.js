@@ -62,14 +62,17 @@ document.addEventListener('DOMContentLoaded', function () {
       const $movieList = document.querySelector('#cardList');
       $movieList.innerHTML = "";
 
-      const apiUrl = `${apiEndpoint}?language=ko-KO&api_key=${apiKey}&query=${searchTerm}`;
+      const apiUrl = `https://api.themoviedb.org/3/movie/top_rated?language=ko-KO&page=1`;
       console.log(searchTerm);
       console.log(apiUrl);
       fetch(apiUrl, options)
         .then(response => response.json())
         .then(data => {
-          console.log(data);
-          data.results.forEach((a) => {
+          console.log(searchTerm);
+          const searched = data.results.filter((movie) => {
+            return movie.title.toLowerCase().includes(searchTerm.toLowerCase());
+            })
+            searched.forEach((a) => {
             const $moviecard = createMovieCard(a);
             $movieList.appendChild($moviecard);
           });
